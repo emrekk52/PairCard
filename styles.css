@@ -1,0 +1,637 @@
+@font-face {
+  font-family: "Game";
+  src: url("Assets/Fonts/Game.ttf");
+}
+
+@font-face {
+  font-family: "Jumpman";
+  src: url("Assets/Fonts/Jumpman.ttf");
+}
+
+@font-face {
+  font-family: "Uncracked";
+  src: url("Assets/Fonts/Uncracked.otf");
+}
+
+@font-face {
+  font-family: "Luckiest";
+  src: url("Assets/Fonts/Luckiest.ttf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Uncracked;
+}
+
+body {
+  background: radial-gradient(#00a2ff, #003877);
+  margin: 0 auto !important;
+}
+
+.page-title {
+  color: #001a63;
+  font-family: Luckiest;
+  font-weight: normal;
+  text-align: center;
+  font-size: 6em;
+}
+
+.game-info-container {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-info {
+  color: #c2d0fd;
+  font-size: 4em;
+}
+
+.col-1 {
+  grid-template-columns: repeat(5, auto);
+}
+
+.col-2 {
+  grid-template-columns: repeat(6, auto);
+}
+
+.game-container {
+  margin: 50px auto;
+  display: grid;
+  grid-gap: 10px;
+  justify-content: center;
+  perspective: 500px;
+}
+
+.card {
+  position: relative;
+  height: 175px;
+  width: 125px;
+}
+
+.card-face {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border-width: 2px;
+  transition: transform 500ms ease-in-out;
+  backface-visibility: hidden;
+}
+
+.card.visible .card-back {
+  transform: rotateY(-180deg);
+}
+
+.card.visible .card-front {
+  transform: rotateY(0);
+}
+
+.card.matched .card-front .card-value {
+  animation: dance 1s linear infinite 500ms;
+}
+
+
+
+.card-back {
+  background-color: rgb(65, 65, 65);
+  border-color: #3f645f;
+  transform: rotateY(0), width 200ms ease-in-out, height 200ms ease-in-out;
+}
+
+.cob-web {
+  position: absolute;
+  transition: width 200ms ease-in-out, height 200ms ease-in-out;
+  width: 40px;
+  height: 40px;
+}
+
+.card-face:hover .cob-web {
+  width: 47px;
+  height: 47px;
+}
+
+.cob-web-top-left {
+  transform: rotate(45deg);
+  top: 0;
+  left: 0;
+}
+
+.cob-web-top-right {
+  transform: rotate(135deg);
+  top: 0;
+  right: 0;
+}
+
+.cob-web-bottom-left {
+  transform: rotate(-45deg);
+  bottom: 0;
+  left: 0;
+}
+
+.cob-web-bottom-right {
+  transform: rotate(-135deg);
+  bottom: 0;
+  right: 0;
+}
+
+.joystick {
+  align-self: flex-start;
+  transition: transform 200ms ease-in-out;
+  margin: auto !important;
+}
+
+.card-back:hover .joystick {
+  transform: rotateZ(45deg);
+  width: 70px;
+  height: 70px;
+}
+
+.card-value {
+  position: relative;
+  transition: transform 100ms ease-in-out;
+  transform: scale(0.9);
+}
+
+.card-front:hover .card-value {
+  transform: scale(1);
+}
+
+.card-front {
+  background-color: #39c0ff;
+  border-color: rgb(0, 108, 248);
+  transform: rotateY(180deg);
+}
+
+.overlay-text {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: none;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #698ba7;
+  font-family: Jumpman;
+  transition: background-color 500ms, font-size 500ms;
+}
+
+.overlay-text-small {
+  font-size: 0.3em;
+}
+
+.overlay-text.visible {
+  display: flex;
+  animation: overlay-grow 500ms forwards;
+}
+
+@keyframes dance {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  75% {
+    transform: rotate(30deg);
+  }
+}
+
+@keyframes overlay-grow {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 0;
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 10em;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-container {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  .game-info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* kayan yazı efekti */
+
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+
+body {
+  padding: 40px;
+  background-color: #121212;
+}
+
+#parent {
+  height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "Source Code Pro", monospace;
+  font-size: 28px;
+  font-family: Jumpman;
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+}
+
+#border {
+  border-bottom: solid 3px rgba(0, 255, 0, 0.75);
+  position: absolute;
+  right: -7px;
+  width: 20px;
+}
+
+/* Animation */
+#parent {
+  animation: animated-text 2s steps(100, end) 1s 1 normal both;
+}
+
+#border {
+  animation: animated-cursor 600ms steps(100, end) infinite;
+}
+
+/* text animation */
+
+@keyframes animated-text {
+  from {
+    width: 0;
+  }
+  to {
+    width: 900px;
+  }
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor {
+  from {
+    border-bottom-color: rgba(0, 255, 0, 0.75);
+  }
+  to {
+    border-bottom-color: transparent;
+  }
+}
+
+a {
+  position: relative;
+  width: 100%;
+  padding-top: 25.92%;
+  display: block;
+  background-size: 100% 100%;
+  font-family: Luckiest;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #333;
+}
+a.background-button {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/323909/yellow-shadow.png);
+}
+a.background-button:after {
+  content: attr(title);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/323909/yellow-top.png);
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+a.background-button:hover:after {
+  -webkit-transform: translate(2.5%, 10%);
+  transform: translate(2.5%, 10%);
+  text-shadow: 2px 2px 1px white;
+  color: black;
+}
+.button-wrapper {
+  width: 355px;
+  display: inline-block;
+  margin: 5px;
+}
+.button-wrapper:nth-child(2) a {
+  -webkit-filter: hue-rotate(36deg);
+  filter: hue-rotate(36deg);
+}
+.button-wrapper:nth-child(3) a {
+  -webkit-filter: hue-rotate(72deg);
+  filter: hue-rotate(72deg);
+}
+.button-wrapper:nth-child(4) {
+  -webkit-filter: hue-rotate(108deg);
+  filter: hue-rotate(108deg);
+}
+.button-wrapper:nth-child(5) {
+  -webkit-filter: hue-rotate(144deg);
+  filter: hue-rotate(144deg);
+}
+.button-wrapper:nth-child(6) {
+  -webkit-filter: hue-rotate(180deg);
+  filter: hue-rotate(180deg);
+}
+.button-wrapper:nth-child(7) {
+  -webkit-filter: hue-rotate(216deg);
+  filter: hue-rotate(216deg);
+}
+.button-wrapper:nth-child(8) {
+  -webkit-filter: hue-rotate(216deg);
+  filter: hue-rotate(216deg);
+}
+.button-wrapper:nth-child(9) {
+  -webkit-filter: hue-rotate(252deg);
+  filter: hue-rotate(252deg);
+}
+.button-wrapper:nth-child(7) {
+  -webkit-filter: hue-rotate(288deg);
+  filter: hue-rotate(288deg);
+}
+.button-wrapper:nth-child(8) {
+  -webkit-filter: hue-rotate(324deg);
+  filter: hue-rotate(324deg);
+}
+
+.button {
+  text-align: center;
+}
+
+#container {
+  text-align: center;
+}
+
+#text {
+  display: inline-block;
+  vertical-align: middle;
+  color: rgb(255, 230, 0);
+  font-size: 2em;
+  font-family: Luckiest;
+  letter-spacing: 2px;
+}
+
+#info {
+  visibility: hidden;
+}
+
+#cursor {
+  display: inline-block;
+  vertical-align: middle;
+  width: 3px;
+  height: 30px;
+  background-color: rgb(217, 255, 0);
+  animation: blink 0.75s step-end infinite;
+}
+
+@keyframes blink {
+  from,
+  to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgb(229, 255, 0);
+  }
+}
+
+.power-switch {
+  --color-invert: #ffffff;
+  --width: 150px;
+  --height: 150px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: var(--width);
+  height: var(--height);
+}
+.power-switch .button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.power-switch .button:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: radial-gradient(
+    circle closest-side,
+    var(--color-invert),
+    transparent
+  );
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+  transform: perspective(1px) translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.power-switch .button .power-on,
+.power-switch .button .power-off {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  fill: none;
+  stroke: var(--color-invert);
+  stroke-width: 8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.power-switch .button .power-on .line,
+.power-switch .button .power-off .line {
+  opacity: 0.2;
+}
+.power-switch .button .power-on .circle,
+.power-switch .button .power-off .circle {
+  opacity: 0.2;
+  transform: rotate(-58deg);
+  transform-origin: center 80px;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 40;
+}
+.power-switch .button .power-on {
+  filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.8));
+}
+.power-switch .button .power-on .line {
+  opacity: 0;
+  transition: opacity 0.3s ease 1s;
+}
+.power-switch .button .power-on .circle {
+  opacity: 1;
+  stroke-dashoffset: 220;
+  transition: transform 0s ease, stroke-dashoffset 1s ease 0s;
+}
+.power-switch input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0;
+}
+.power-switch input:checked + .button:after {
+  opacity: 0.15;
+  transform: scale(2) perspective(1px) translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.power-switch input:checked + .button .power-on,
+.power-switch input:checked + .button .power-off {
+  -webkit-animation: click-animation 0.3s ease forwards;
+  animation: click-animation 0.3s ease forwards;
+  transform: scale(1);
+}
+.power-switch input:checked + .button .power-on .line,
+.power-switch input:checked + .button .power-off .line {
+  -webkit-animation: line-animation 0.8s ease-in forwards;
+  animation: line-animation 0.8s ease-in forwards;
+}
+.power-switch input:checked + .button .power-on .circle,
+.power-switch input:checked + .button .power-off .circle {
+  transform: rotate(302deg);
+}
+.power-switch input:checked + .button .power-on .line {
+  opacity: 1;
+  transition: opacity 0.05s ease-in 0.55s;
+}
+.power-switch input:checked + .button .power-on .circle {
+  transform: rotate(302deg);
+  stroke-dashoffset: 40;
+  transition: transform 0.4s ease 0.2s, stroke-dashoffset 0.4s ease 0.2s;
+}
+
+@-webkit-keyframes line-animation {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(10px);
+  }
+  40% {
+    transform: translateY(-25px);
+  }
+  60% {
+    transform: translateY(-25px);
+  }
+  85% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes line-animation {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(10px);
+  }
+  40% {
+    transform: translateY(-25px);
+  }
+  60% {
+    transform: translateY(-25px);
+  }
+  85% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@-webkit-keyframes click-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes click-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+h1 {
+  color: rgba(24, 25, 27, 1);
+  margin-bottom: 2rem;
+}
+section {
+  display: flex;
+  flex-flow: row wrap;
+}
+section > div {
+  flex: 1;
+  padding: 0.5rem;
+}
+input[type="radio"] {
+  display: none;
+}
+input[type="radio"]:not(:disabled) ~ label {
+  cursor: pointer;
+}
+input[type="radio"]:disabled ~ label {
+  color: rgba(188, 194, 191, 1);
+  border-color: rgba(188, 194, 191, 1);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+label {
+  height: 100%;
+  display: block;
+  background: white;
+  border: 2px solid rgb(255, 238, 0);
+  border-radius: 20px;
+  font-family: Luckiest, "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  box-shadow: 0px 3px 10px -2px rgba(161, 170, 166, 0.5);
+  position: relative;
+}
+
+label:hover {
+  background: rgb(255, 238, 0);
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 20px rgb(255, 238, 0);
+}
+
+@media only screen and (max-width: 700px) {
+  section {
+    flex-direction: column;
+  }
+}
